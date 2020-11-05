@@ -32,6 +32,14 @@ public class SceneButtonManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Loads the play scene
+    /// </summary>
+    public void LoadPlay()
+    {
+        LoadSceneWithString("Play");
+    }
+
+    /// <summary>
     /// Loads a scene with a string of the scene name
     /// </summary>
     /// <param name="sceneName"></param>
