@@ -16,12 +16,27 @@ public class SceneButtonManager : MonoBehaviour
 {
 
     /// <summary>
+    /// Loads the instructions scene
+    /// </summary>
+    public void LoadInstructions()
+    {
+        LoadSceneWithString("Instructions");
+    }
+
+    /// <summary>
+    /// Loads the main menu scene
+    /// </summary>
+    public void LoadMenu()
+    {
+        LoadSceneWithString("Menu");
+    }
+
+    /// <summary>
     /// Loads a scene with a string of the scene name
     /// </summary>
     /// <param name="sceneName"></param>
-    public void LoadSceneWithString(string sceneName)
+    private void LoadSceneWithString(string sceneName)
     {
-        Debug.Log("clicked");
         SceneManager.LoadScene(sceneName);
     }
 }
