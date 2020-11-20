@@ -11,6 +11,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         if (!SceneButtonManager.gameIsPaused)
         { // If screen is touched
@@ -37,6 +38,10 @@ public class PlayerController : MonoBehaviour
                 Vector2 playerToTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position;
                 rigidbody.AddForce(playerToTarget * force);
 
+            }
+            if (transform.position.y < -10.0f)
+            {
+                SceneManager.LoadScene("GameOver");
             }
         }
     }
