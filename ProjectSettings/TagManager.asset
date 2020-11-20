@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ExplodingCrates
+    uniqueID: 2632531003
+    locked: 0

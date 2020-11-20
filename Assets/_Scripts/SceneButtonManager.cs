@@ -1,11 +1,12 @@
 ﻿/* Filename: SceneManager.cs
  * Author: Catt Symonds
  * Student number: 101209214
- * Date last modified: 05/11/2020
+ * Date last modified: 20/11/2020
  * Description: Buttons for switching between scenes
  * 
  * Revision History
- * 05/11/2020: File created */
+ * 05/11/2020: File created 
+ * 20/11/2020: pause functionality added */
 
 using System.Collections;
 using System.Collections.Generic;
@@ -46,5 +47,21 @@ public class SceneButtonManager : MonoBehaviour
     private void LoadSceneWithString(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    /// <summary>
+    /// Pauses the game
+    /// </summary>
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    /// <summary>
+    /// Unpauses the game
+    /// </summary>
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }
