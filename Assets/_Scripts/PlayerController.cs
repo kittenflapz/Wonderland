@@ -26,16 +26,18 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        // If screen is touched
-        if (Input.GetMouseButtonDown(0)) 
-        {
-            Debug.Log("adding force");
-            // Add a velocity in that direction
-            Vector2 playerToTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position;
-            rigidbody.AddForce(playerToTarget * force);
+        if (!SceneButtonManager.gameIsPaused)
+        { // If screen is touched
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("adding force");
+                // Add a velocity in that direction
+                Vector2 playerToTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position;
+                rigidbody.AddForce(playerToTarget * force);
 
+            }
         }
     }
 }

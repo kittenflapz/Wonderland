@@ -15,6 +15,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneButtonManager : MonoBehaviour
 {
+    [SerializeField]
+    public static bool gameIsPaused;
 
     /// <summary>
     /// Loads the instructions scene
@@ -49,10 +51,23 @@ public class SceneButtonManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void PauseToggle(bool pauseState)
+    {
+        gameIsPaused = pauseState;
+        if (pauseState == true)
+        {
+            PauseGame();
+        }
+        else
+        {
+            ResumeGame();
+        }
+    }
+
     /// <summary>
     /// Pauses the game
     /// </summary>
-    void PauseGame()
+    public void PauseGame()
     {
         Time.timeScale = 0;
     }
@@ -60,7 +75,7 @@ public class SceneButtonManager : MonoBehaviour
     /// <summary>
     /// Unpauses the game
     /// </summary>
-    void ResumeGame()
+    public void ResumeGame()
     {
         Time.timeScale = 1;
     }
