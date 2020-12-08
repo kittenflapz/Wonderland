@@ -1,4 +1,15 @@
-﻿using System.Collections;
+﻿/* Filename: SnowmanController.cs
+ * Author: Catt Symonds
+ * Student number: 101209214
+ * Date last modified:  08/12/2020
+ * Description:enemy AI
+ * 
+ * Revision History
+ * 
+ 08/12/2020: file created */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +21,7 @@ public class SnowmanController : MonoBehaviour
     public Transform lookAheadPoint;
     public bool isGroundAhead;
     public LayerMask ground;
+    public PlayerController player;
 
 
     private AudioSource hitSound;
@@ -17,7 +29,7 @@ public class SnowmanController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        player = FindObjectOfType<PlayerController>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         hitSound = GetComponent<AudioSource>();
  
@@ -28,6 +40,8 @@ public class SnowmanController : MonoBehaviour
     {
         _LookAhead();
         _Move();
+
+ 
     }
 
     private void _LookAhead()
@@ -66,9 +80,14 @@ public class SnowmanController : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-   
+        if (other.gameObject.CompareTag("Player"))
+        {
+            player.Hurt(10);
+        }
     }
+
+
 
 }

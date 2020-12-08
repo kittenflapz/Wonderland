@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/* Filename: FloatingIcePlatform.cs
+ * Author: Catt Symonds
+ * Student number: 101209214
+ * Date last modified: 08/12/2020
+ * Description: floating ice platform
+ * 
+ * Revision History
+ * 08/12/2020: File created */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

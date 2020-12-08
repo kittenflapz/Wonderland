@@ -5,7 +5,10 @@
  * Description: Player control and animation
  * 
  * Revision History
- * 09/11/2020: File created */
+ * 09/11/2020: File created 
+ 08/12/2020: more movement and collision 
+ 08/12/2020: health feedback 
+ 08/12/2020: sfx*/
 
 
 using System.Collections;
@@ -13,20 +16,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigidbody;
     Animator animator;
 
+    public TextMeshProUGUI starText;
+
     [SerializeField]
     Image forceMeter;
+
+    public AudioSource hohoho;
+
+
+    [SerializeField]
+    Image healthMeter;
 
     [SerializeField]
     float force;
 
     [SerializeField]
     float maxForce;
+
+    [SerializeField]
+    float health;
+
+    [SerializeField]
+    float maxHealth;
+
 
     bool flying;
 
@@ -37,12 +56,18 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
+        hohoho = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         forceMeter.fillAmount = force / maxForce;
+        healthMeter.fillAmount = health / maxHealth;
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
 
         animator.SetFloat("MoveVectorMagnitude", rigidbody.velocity.magnitude);
 
@@ -65,6 +90,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (!flying)
                 {
+                    hohoho.Play();
                     // Add a velocity in that direction
                     Vector2 playerToTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position;
                     rigidbody.AddForce(playerToTarget * force);
@@ -81,6 +107,7 @@ public class PlayerController : MonoBehaviour
     public void AddStar()
     {
         starNumber++;
+       starText.SetText(starNumber.ToString());
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -100,5 +127,10 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.GetComponent<FloatingIcePlatform>().isActive = false;
         }
+    }
+
+    public void Hurt(int amount)
+    {
+        health -= amount;
     }
 }
