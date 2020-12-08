@@ -82,4 +82,23 @@ public class PlayerController : MonoBehaviour
     {
         starNumber++;
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+ 
+
+        if (other.gameObject.CompareTag("Moving Platform"))
+        {
+            other.gameObject.GetComponent<FloatingIcePlatform>().isActive = true;
+            transform.SetParent(other.gameObject.transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Moving Platform"))
+        {
+            other.gameObject.GetComponent<FloatingIcePlatform>().isActive = false;
+        }
+    }
 }
