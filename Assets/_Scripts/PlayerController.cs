@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     bool flying;
 
+     int starNumber;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,5 +76,10 @@ public class PlayerController : MonoBehaviour
                 SceneManager.LoadScene("GameOver");
             }
         }
+    }
+
+    public void AddStar()
+    {
+        starNumber++;
     }
 }
